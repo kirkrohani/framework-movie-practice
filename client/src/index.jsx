@@ -11,7 +11,7 @@ class MovieList extends React.Component {
     super();
 
     this.state = {
-        movies: [],
+        movies:  [],
         view:  'all',
         search:  ''
     }
@@ -22,10 +22,8 @@ class MovieList extends React.Component {
       url: '/load',
       method: 'GET',
       contentType: 'application/json',
-      success: (movieData) => {
-        this.setState({
-          movies: movieData
-        })
+      success: () => {
+        this.getMovies();
       },
       error: (xhr, status, error) => {
         console.log('err', xhr, status, error);
@@ -64,6 +62,21 @@ class MovieList extends React.Component {
     });
   }
 
+  getMovies() {
+    $.ajax({
+      url: '/movies',
+      method: 'GET',
+      contentType: 'application/json',
+      success: (movieData) => {
+        this.setState({
+          movies: movieData
+        })
+      },
+      error: (xhr, status, error) => {
+        console.log('err', xhr, status, error);
+      }
+    });
+  }
 
   addMovie(newMovieTitle) {
     $.ajax({
@@ -74,10 +87,8 @@ class MovieList extends React.Component {
         watched:    false
       }),
       contentType: 'application/json',
-      success: (movieData) => {
-        this.setState({
-          movies: movieData
-        })
+      success: () => {
+        this.getMovies();
       },
       error: (xhr, status, error) => {
         console.log('err', xhr, status, error);
