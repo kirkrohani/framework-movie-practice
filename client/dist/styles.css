@@ -1,0 +1,21 @@
+.box {
+    display: inline-block;
+    border: 1px solid black;
+    width: 450px;
+    height: 100px;
+    text-align: center;
+  }
+
+  button {
+      background-color: lightgreen;
+  }
+
+#filterButton {
+    width: 150px;
+    background-color: lightblue;
+}
+
+ #toggleButton {
+     float: right;
+ }
+ 
